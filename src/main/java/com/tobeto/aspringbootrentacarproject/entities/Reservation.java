@@ -1,12 +1,18 @@
 package com.tobeto.aspringbootrentacarproject.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Table(name = "reservations")
 @Entity
+@Getter
+@Setter
 public class Reservation {
 
     @Id
@@ -15,14 +21,14 @@ public class Reservation {
     private int id;
 
     @Column(name = "total_price")
-    private BigDecimal totalPrice;
+    private double totalPrice;
 
     @Column(name = "begining_date")
-    private LocalDateTime beginingDate;
+    private LocalDate beginingDate;
 
 
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name="current_loc_id")

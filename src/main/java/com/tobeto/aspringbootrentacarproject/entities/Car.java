@@ -1,13 +1,18 @@
 package com.tobeto.aspringbootrentacarproject.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Table(name = "cars")
 @Entity
+@Getter
+@Setter
 public class Car {
     @Id
     @Column(name = "id")
@@ -22,7 +27,7 @@ public class Car {
     private String modelName;
 
     @Column(name = "daily_price")
-    private BigDecimal dailyPrice;
+    private double dailyPrice;
 
     @Column(name = "color")
     private String color;
@@ -30,7 +35,7 @@ public class Car {
     @Column(name ="status")
     private String status;
 
-    @Column(name="fuel_type")
+    @Column(name = "fuel_type")
     private String fuelType;
 
   @ManyToOne
@@ -43,6 +48,7 @@ public class Car {
 
 
    @OneToMany(mappedBy = "car")
+   @JsonIgnore
     private List<Reservation>reservations;
 
 
