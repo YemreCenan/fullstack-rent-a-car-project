@@ -2,6 +2,10 @@ package com.tobeto.aspringbootrentacarproject.controllers;
 
 import com.tobeto.aspringbootrentacarproject.entities.OfficePhone;
 import com.tobeto.aspringbootrentacarproject.repositories.OfficePhoneRepository;
+import com.tobeto.aspringbootrentacarproject.services.abstracts.OfficePhoneService;
+import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.AddOfficePhoneRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.DeleteOfficePhoneRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.UpdateOfficePhoneRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,47 +14,48 @@ import java.util.List;
 @RequestMapping("api/office_phone")
 public class OfficePhoneController {
 
- private final OfficePhoneRepository officePhoneRepository;
 
+    private OfficePhoneService officePhoneService;
 
-    public OfficePhoneController(OfficePhoneRepository officePhoneRepository) {
-        this.officePhoneRepository = officePhoneRepository;
+    public OfficePhoneController(OfficePhoneService officePhoneService) {
+        this.officePhoneService = officePhoneService;
     }
 
-    @GetMapping
+
+
+
+
+    @GetMapping("getAll")
     public List<OfficePhone> getAll(){
-        List<OfficePhone> officePhones= officePhoneRepository.findAll();
-        return officePhones;
+
+        return officePhoneService.getAll();
 
     }
 
-    @GetMapping("{id}")
-    public OfficePhone getById(@PathVariable int id){
+    @GetMapping("getById")
+    public OfficePhone getById(int id){
 
-        return officePhoneRepository.findById(id).orElseThrow();
+        return officePhoneService.getById(id);
     }
 
 
-    @PostMapping()
-    public void add(@RequestBody OfficePhone officePhone){
+    @PostMapping("/add/")
+    public void add(AddOfficePhoneRequest request){
 
-        officePhoneRepository.save(officePhone);
+        officePhoneService.add(request);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable int id){
-        OfficePhone deleteToOfficePhone=officePhoneRepository.findById(id).orElseThrow();
-        officePhoneRepository.delete(deleteToOfficePhone);
+    @DeleteMapping("/delete/")
+    public void delete(DeleteOfficePhoneRequest request){
+        officePhoneService.delete(request);
+
 
     }
 
 
-    @PutMapping("update/{id}")
-    public void update(@PathVariable int id,@RequestBody OfficePhone officePhone){
-        OfficePhone updateOfficePhone = officePhoneRepository.findById(id).orElseThrow();
-        updateOfficePhone.setPhoneOne(officePhone.getPhoneOne());
-        updateOfficePhone.setPhoneTwo(officePhone.getPhoneTwo());
-        officePhoneRepository.save(updateOfficePhone);
+    @PutMapping("/update/")
+    public void update(UpdateOfficePhoneRequest request){
+        officePhoneService.update(request);
 
     }
 

@@ -2,6 +2,10 @@ package com.tobeto.aspringbootrentacarproject.controllers;
 
 import com.tobeto.aspringbootrentacarproject.entities.Customer;
 import com.tobeto.aspringbootrentacarproject.repositories.CustomerRepository;
+import com.tobeto.aspringbootrentacarproject.services.abstracts.CustomerService;
+import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.AddCustomerRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.DeleteCustomerRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.UpdateCustomerRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,46 +14,37 @@ import java.util.List;
 @RequestMapping("api/customer")
 public class CustomerController {
 
-    private final CustomerRepository customerRepository;
+    private CustomerService customerService;
 
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @GetMapping
+    @GetMapping("getAll")
     public List<Customer> getAll() {
-        List<Customer> customers = customerRepository.findAll();
-        return customers;
+
+        return customerService.getAll();
     }
 
-    @GetMapping("{id}")
-    public Customer getById(@PathVariable int id){
-        return customerRepository.findById(id).orElseThrow();
+    @GetMapping("getById")
+    public Customer getById(int id){
+        return customerService.getById(id);
     }
 
-    @PostMapping("/add/{id}")
-    public void add (@RequestBody Customer customer){
-        customerRepository.save(customer);
+    @PostMapping("/add/")
+    public void add (AddCustomerRequest request){
+        customerService.add(request);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable int id){
-        Customer deleteToCustomer = customerRepository.findById(id).orElseThrow();
-        customerRepository.delete(deleteToCustomer);
+    @DeleteMapping("/delete/")
+    public void delete(DeleteCustomerRequest request){
+      customerService.delete(request);
     }
 
-    @PutMapping("/update/{id}")
-    public void update(@PathVariable int id,@RequestBody Customer customer){
-        Customer customerToUpdate = customerRepository.findById(id).orElseThrow();
-        customerToUpdate.setIdentiNumber(customer.getIdentiNumber());
-        customerToUpdate.setFirstName(customer.getFirstName());
-        customerToUpdate.setLastName(customer.getLastName());
-        customerToUpdate.setMobil(customerToUpdate.getMobil());
-        customerToUpdate.setEmail(customerToUpdate.getEmail());
-        customerToUpdate.setCountry(customerToUpdate.getCountry());
-        customerToUpdate.setAddress(customerToUpdate.getAddress());
-        customerToUpdate.setState(customerToUpdate.getState());
-        customerRepository.save(customerToUpdate);
+    @PutMapping("/update/")
+    public void update(UpdateCustomerRequest request){
+        customerService.update(request);
+
     }
 
 
