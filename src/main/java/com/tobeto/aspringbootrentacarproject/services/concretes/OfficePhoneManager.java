@@ -1,4 +1,4 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
 
 import com.tobeto.aspringbootrentacarproject.entities.OfficePhone;
@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.OfficePhoneServi
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.AddOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.DeleteOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.UpdateOfficePhoneRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.resposes.GetListOffPhoneResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,4 +56,11 @@ public class OfficePhoneManager implements OfficePhoneService {
         OfficePhone officePhone = officePhoneRepository.findById(id).orElseThrow();
         return officePhone;
     }
+
+    @Override
+    public List<OfficePhone> getByPhoneOne(int phoneOne) {
+        return officePhoneRepository.findByPhoneOne(phoneOne);
+    }
+
+
 }

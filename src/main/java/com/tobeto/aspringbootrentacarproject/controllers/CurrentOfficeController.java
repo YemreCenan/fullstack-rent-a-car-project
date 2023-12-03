@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBra
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.AddCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.DeleteCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.UpdateCurrentOfficeRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.responses.GetListCurrOfficeResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,6 +52,14 @@ public class CurrentOfficeController {
     public void update(UpdateCurrentOfficeRequest request){
        currentOfficeService.update(request);
 
+    }
+
+
+
+    @GetMapping("/dto/OfficeCity")
+    public List<GetListCurrOfficeResponse>getByCurrOfficeDto(@RequestParam String officeCity){
+
+        return currentOfficeService.getByCityDto(officeCity);
     }
 
 

@@ -6,6 +6,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.OfficePhoneServi
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.AddOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.DeleteOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.UpdateOfficePhoneRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.resposes.GetListOffPhoneResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,6 +59,13 @@ public class OfficePhoneController {
         officePhoneService.update(request);
 
     }
+
+    @GetMapping("/filter/phone")
+    public List<OfficePhone> getByPhoneOne(@RequestParam int phoneOne){
+        return officePhoneService.getByPhoneOne(phoneOne);
+    }
+
+
 
 
 }

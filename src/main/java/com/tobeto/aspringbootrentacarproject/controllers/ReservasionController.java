@@ -7,8 +7,10 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.Add
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.AddReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.DeleteReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.UpdateReservationRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.responses.GetListReservationResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -47,6 +49,12 @@ public class ReservasionController {
     public void update(UpdateReservationRequest request){
        reservationService.update(request);
 
+    }
+
+    @GetMapping("/dtoTotalPrice")
+    public List<GetListReservationResponse> getByPriceDto(@RequestParam double totalPrice){
+
+        return reservationService.getByPriceDto(totalPrice);
     }
 
 

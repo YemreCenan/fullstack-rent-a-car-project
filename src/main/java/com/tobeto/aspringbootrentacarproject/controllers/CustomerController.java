@@ -6,6 +6,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.CustomerService;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.AddCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.UpdateCustomerRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.customer.responses.GetListCustomerRespose;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class CustomerController {
         customerService.update(request);
 
     }
+
+    @GetMapping("/filter/FirstName")
+    public List<Customer> getByFirstName(@RequestParam String firstName){
+        return customerService.getByFirstName(firstName);
+    }
+
 
 
     }

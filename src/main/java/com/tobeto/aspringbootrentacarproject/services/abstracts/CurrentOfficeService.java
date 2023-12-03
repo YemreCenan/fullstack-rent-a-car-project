@@ -4,8 +4,8 @@ import com.tobeto.aspringbootrentacarproject.entities.CurrentOffice;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.AddCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.DeleteCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.UpdateCurrentOfficeRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.responses.GetListCurrOfficeResponse;
 
-import javax.swing.event.ListDataEvent;
 import java.util.List;
 
 public interface CurrentOfficeService {
@@ -16,5 +16,8 @@ public interface CurrentOfficeService {
 
  List<CurrentOffice> getAll();
  CurrentOffice getById(int id);
+
+
+ List<GetListCurrOfficeResponse>getByCityDto(String officeCity);
 
 }

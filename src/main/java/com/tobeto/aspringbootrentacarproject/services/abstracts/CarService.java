@@ -4,6 +4,7 @@ import com.tobeto.aspringbootrentacarproject.entities.Car;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.UpdateCarRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.car.responses.GetListCarResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public interface CarService {
 
     List<Car>getAll();
     Car getById(int id);
+
+
+   List<Car>getByColor(String color);
+    List<GetListCarResponse> getByFuelTypeDto(String fuelType);
 
 
 

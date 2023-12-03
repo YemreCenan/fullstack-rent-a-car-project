@@ -1,4 +1,4 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
 import com.tobeto.aspringbootrentacarproject.entities.Brand;
 import com.tobeto.aspringbootrentacarproject.repositories.BrandRepository;
@@ -6,6 +6,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.BrandService;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.UpdateBrandRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.brand.responses.GetListBrandResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +56,11 @@ public class BrandManager implements BrandService {
     public Brand getById(int id) {
         Brand brand = brandRepository.findById(id).orElseThrow();
         return brand;
+    }
+
+    @Override
+    public List<GetListBrandResponse> getByNameDto(String name) {
+        return brandRepository.findByName(name);
     }
 
 

@@ -1,4 +1,4 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
 import com.tobeto.aspringbootrentacarproject.entities.Reservation;
 import com.tobeto.aspringbootrentacarproject.repositories.ReservationRepository;
@@ -6,8 +6,10 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.ReservationServi
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.AddReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.DeleteReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.UpdateReservationRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.responses.GetListReservationResponse;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -57,4 +59,11 @@ public class ReservationMenager implements ReservationService {
 
         return reservation;
     }
+
+    @Override
+    public List<GetListReservationResponse> getByPriceDto(double totalPrice) {
+        return reservationRepository.findByPrice(totalPrice);
+    }
+
+
 }

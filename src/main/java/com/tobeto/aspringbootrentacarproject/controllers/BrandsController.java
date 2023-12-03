@@ -8,6 +8,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.BrandService;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.UpdateBrandRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.brand.responses.GetListBrandResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,12 @@ public class BrandsController {
       brandServices.update(request);
 
    }
+
+   @GetMapping("/dto")
+   public List<GetListBrandResponse> getByNameDto(@RequestParam String name){
+      return brandServices.getByNameDto(name);
+   }
+
 
 
 }

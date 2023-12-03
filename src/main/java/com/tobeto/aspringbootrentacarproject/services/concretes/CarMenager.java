@@ -1,16 +1,12 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
-import com.tobeto.aspringbootrentacarproject.entities.Brand;
 import com.tobeto.aspringbootrentacarproject.entities.Car;
-import com.tobeto.aspringbootrentacarproject.repositories.BrandRepository;
 import com.tobeto.aspringbootrentacarproject.repositories.CarRepository;
 import com.tobeto.aspringbootrentacarproject.services.abstracts.CarService;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBrandRequest;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.DeleteBrandRequest;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.UpdateCarRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.car.responses.GetListCarResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,5 +65,15 @@ public class CarMenager implements CarService {
     public Car getById(int id) {
         Car car = carRepository.findById(id).orElseThrow();
         return car;
+    }
+
+    @Override
+    public List<Car> getByColor(String color) {
+        return carRepository.findByColorStartingWith(color);
+    }
+
+    @Override
+    public List<GetListCarResponse> getByFuelTypeDto(String fuelType) {
+        return carRepository.getByFuelType(fuelType);
     }
 }

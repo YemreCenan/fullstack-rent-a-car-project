@@ -1,16 +1,12 @@
 package com.tobeto.aspringbootrentacarproject.controllers;
 
 
-import com.tobeto.aspringbootrentacarproject.entities.Brand;
 import com.tobeto.aspringbootrentacarproject.entities.Car;
-import com.tobeto.aspringbootrentacarproject.repositories.CarRepository;
 import com.tobeto.aspringbootrentacarproject.services.abstracts.CarService;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBrandRequest;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.DeleteBrandRequest;
-import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.UpdateCarRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.car.responses.GetListCarResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,5 +45,20 @@ public class CarController {
         carService.update(request);
 
     }
+
+
+    @GetMapping("/filter/Color")
+    public List<Car> getByColor(@RequestParam String color){
+        return carService.getByColor(color);
+    }
+
+    @GetMapping("/dto/fuelType")
+    public List<GetListCarResponse> getByFuelTypeDto(@RequestParam String fuelType){
+        return carService.getByFuelTypeDto(fuelType);
+    }
+
+
+
+
 
 }

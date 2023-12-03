@@ -1,4 +1,4 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
 import com.tobeto.aspringbootrentacarproject.entities.Customer;
 import com.tobeto.aspringbootrentacarproject.repositories.CustomerRepository;
@@ -6,6 +6,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.CustomerService;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.AddCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.UpdateCustomerRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.customer.responses.GetListCustomerRespose;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,4 +69,16 @@ public class CustomerManager implements CustomerService {
         Customer customer = customerRepository.findById(id).orElseThrow();
         return customer;
     }
+
+    @Override
+    public List<Customer> getByFirstName(String firstName) {
+        return customerRepository.findByFirstNameStartingWith(firstName);
+    }
+
+    @Override
+    public List<GetListCustomerRespose> getByStateDto(String state) {
+        return customerRepository.findByState(state);
+    }
+
+
 }

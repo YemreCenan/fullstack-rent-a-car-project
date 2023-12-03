@@ -1,4 +1,4 @@
-package com.tobeto.aspringbootrentacarproject.services.concrtes;
+package com.tobeto.aspringbootrentacarproject.services.concretes;
 
 import com.tobeto.aspringbootrentacarproject.entities.CurrentOffice;
 import com.tobeto.aspringbootrentacarproject.repositories.CurrentOfficeRepository;
@@ -6,6 +6,7 @@ import com.tobeto.aspringbootrentacarproject.services.abstracts.CurrentOfficeSer
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.AddCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.DeleteCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.UpdateCurrentOfficeRequest;
+import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.responses.GetListCurrOfficeResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,5 +62,13 @@ public class CurrentOffceMenager implements CurrentOfficeService {
     public CurrentOffice getById(int id) {
         CurrentOffice currentOffice = currentOfficeRepository.findById(id).orElseThrow();
         return currentOffice;
+    }
+
+
+
+
+    @Override
+    public List<GetListCurrOfficeResponse> getByCityDto(String officeCity) {
+        return currentOfficeRepository.getByCity(officeCity);
     }
 }
