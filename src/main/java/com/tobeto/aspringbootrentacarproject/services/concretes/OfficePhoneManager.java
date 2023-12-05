@@ -59,7 +59,11 @@ public class OfficePhoneManager implements OfficePhoneService {
 
     @Override
     public List<OfficePhone> getByPhoneOne(int phoneOne) {
-        return officePhoneRepository.findByPhoneOne(phoneOne);
+        return officePhoneRepository.findByPhoneOne(phoneOne)
+                .stream()
+                .filter((of)->of.getPhoneOne()>10).toList();
+
+
     }
 
 

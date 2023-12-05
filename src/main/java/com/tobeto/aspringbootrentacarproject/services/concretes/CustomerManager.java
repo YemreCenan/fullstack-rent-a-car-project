@@ -16,6 +16,7 @@ public class CustomerManager implements CustomerService {
 
 
     private CustomerRepository customerRepository;
+
     public CustomerManager(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
@@ -38,8 +39,8 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public void delete(DeleteCustomerRequest request) {
-     Customer customerToDelete = customerRepository.findById(request.getId()).orElseThrow();
-     customerRepository.delete(customerToDelete);
+        Customer customerToDelete = customerRepository.findById(request.getId()).orElseThrow();
+        customerRepository.delete(customerToDelete);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public List<Customer> getAll() {
-        List<Customer> customerList =customerRepository.findAll();
+        List<Customer> customerList = customerRepository.findAll();
         return customerList;
     }
 
@@ -77,8 +78,10 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public List<GetListCustomerRespose> getByStateDto(String state) {
-        return customerRepository.findByState(state);
+        return customerRepository.findByState(state)
+                .stream()
+                .filter((customer) -> customer.getState().equals("pasif")).toList();
+
+
     }
-
-
 }

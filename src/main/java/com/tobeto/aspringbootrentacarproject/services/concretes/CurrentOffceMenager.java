@@ -69,6 +69,9 @@ public class CurrentOffceMenager implements CurrentOfficeService {
 
     @Override
     public List<GetListCurrOfficeResponse> getByCityDto(String officeCity) {
-        return currentOfficeRepository.getByCity(officeCity);
+        return currentOfficeRepository.getByCity(officeCity)
+                .stream()
+                .map((currentOffice)->new GetListCurrOfficeResponse(currentOffice.getOfficeStreet(),
+                        currentOffice.getOfficeCity(),currentOffice.getOfficeCountry(),currentOffice.getOfficeState())).toList();
     }
 }

@@ -60,7 +60,10 @@ public class BrandManager implements BrandService {
 
     @Override
     public List<GetListBrandResponse> getByNameDto(String name) {
-        return brandRepository.findByName(name);
+        return brandRepository.findByName(name)
+                .stream().
+                filter((brand)->brand.getName().length()<4).toList();
+
     }
 
 

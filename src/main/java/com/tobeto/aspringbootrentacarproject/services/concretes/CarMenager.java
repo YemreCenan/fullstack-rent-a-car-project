@@ -74,6 +74,8 @@ public class CarMenager implements CarService {
 
     @Override
     public List<GetListCarResponse> getByFuelTypeDto(String fuelType) {
-        return carRepository.getByFuelType(fuelType);
+        return carRepository.getByFuelType(fuelType)
+                .stream()
+                .filter((car)->car.getFuelType().length()<=5).toList();
     }
 }

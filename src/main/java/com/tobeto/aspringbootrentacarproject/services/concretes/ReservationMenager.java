@@ -62,7 +62,9 @@ public class ReservationMenager implements ReservationService {
 
     @Override
     public List<GetListReservationResponse> getByPriceDto(double totalPrice) {
-        return reservationRepository.findByPrice(totalPrice);
+        return reservationRepository.findByPrice(totalPrice)
+                .stream()
+                .filter((r)-> r.getTotalPrice()<1000).toList();
     }
 
 
