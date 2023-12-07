@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.DeleteReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.requests.UpdateReservationRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.reservation.responses.GetListReservationResponse;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,7 +24,11 @@ public class ReservationMenager implements ReservationService {
     }
 
     @Override
-    public void add(AddReservationRequest request) {
+    public void add(@Valid AddReservationRequest request) {
+
+        if (request.getBeginingDate().isBefore(LocalDate.now())||request.getEndDate().isBefore(LocalDate.now())){
+            throw new RuntimeException("Kiralanacak tari aralağı geçmişte olamaz.");
+        }
      Reservation reservation = new Reservation();
      reservation.setTotalPrice(request.getTotalPrice());
      reservation.setBeginingDate(request.getBeginingDate());

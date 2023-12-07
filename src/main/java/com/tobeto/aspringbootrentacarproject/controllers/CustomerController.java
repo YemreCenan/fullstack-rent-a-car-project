@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.Add
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.requests.UpdateCustomerRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.customer.responses.GetListCustomerRespose;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class CustomerController {
     }
 
     @PostMapping("/add/")
-    public void add (AddCustomerRequest request){
+    public void add (@Valid AddCustomerRequest request){
         customerService.add(request);
     }
 

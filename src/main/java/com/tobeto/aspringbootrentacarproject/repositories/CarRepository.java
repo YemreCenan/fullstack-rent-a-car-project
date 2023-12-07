@@ -15,4 +15,6 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
     @Query("Select  new com.tobeto.aspringbootrentacarproject.services.dtos.car.responses.GetListCarResponse(c.id,c.modelName,c.fuelType)"+
             "From Car c WHERE c.fuelType = :fuelType")
     List<GetListCarResponse>getByFuelType(String fuelType);
+
+boolean existsCarByFuelType(String fuelType);
 }

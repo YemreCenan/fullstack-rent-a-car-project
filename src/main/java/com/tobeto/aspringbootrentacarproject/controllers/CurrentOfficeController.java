@@ -8,6 +8,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.reques
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.DeleteCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.requests.UpdateCurrentOfficeRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.current_office.responses.GetListCurrOfficeResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class CurrentOfficeController {
     }
 
     @PostMapping("/add/")
-    public void add(AddCurrentOfficeRequest request){
+    public void add(@Valid AddCurrentOfficeRequest request){
         currentOfficeService.add(request);
 
     }

@@ -23,9 +23,9 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add(AddBrandRequest request) {
-        if (request.getName().length()<3){
-            throw new RuntimeException("The brand name cannot be less than 3 characters.");
-        }
+ if (brandRepository.existsBrandByName(request.getName())){
+     throw new RuntimeException("Aynı isimde marka mevcut");
+ }
         Brand brand = new Brand();
         brand.setName(request.getName());
         brandRepository.save(brand);

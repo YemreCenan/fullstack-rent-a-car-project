@@ -25,6 +25,11 @@ public class CustomerManager implements CustomerService {
     @Override
     public void add(AddCustomerRequest request) {
 
+        if (request.getIdentiNumber()<11)
+        {
+            throw new RuntimeException("Bu TC Kimlik numarası geçerli değildir");
+        }
+
         Customer customer = new Customer();
         customer.setIdentiNumber(request.getIdentiNumber());
         customer.setFirstName(request.getFirstName());
@@ -36,6 +41,7 @@ public class CustomerManager implements CustomerService {
         customer.setState(request.getState());
         customerRepository.save(customer);
     }
+
 
     @Override
     public void delete(DeleteCustomerRequest request) {

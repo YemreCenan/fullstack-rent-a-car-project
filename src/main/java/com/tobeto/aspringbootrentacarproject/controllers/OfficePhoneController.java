@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.DeleteOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.requests.UpdateOfficePhoneRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.office_phone.resposes.GetListOffPhoneResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class OfficePhoneController {
 
 
     @PostMapping("/add/")
-    public void add(AddOfficePhoneRequest request){
+    public void add(@Valid AddOfficePhoneRequest request){
 
         officePhoneService.add(request);
     }

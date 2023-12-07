@@ -7,6 +7,7 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.AddCarRe
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.requests.UpdateCarRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.car.responses.GetListCarResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class CarController {
         return carService.getById(id);
     }
     @PostMapping("/add/")
-    public void add(@RequestBody AddCarRequest request){
+    public void add(@RequestBody @Valid AddCarRequest request){
         carService.add(request);
 
     }

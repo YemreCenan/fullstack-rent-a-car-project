@@ -26,6 +26,7 @@ public class CurrentOffceMenager implements CurrentOfficeService {
 
     @Override
     public void add(AddCurrentOfficeRequest request) {
+
       CurrentOffice currentOffice = new CurrentOffice();
       currentOffice.setOfficeStreet(request.getOfficeStreet());
       currentOffice.setOfficeNumber(request.getOfficeNumber());

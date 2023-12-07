@@ -24,6 +24,9 @@ public class OfficePhoneManager implements OfficePhoneService {
 
     @Override
     public void add(AddOfficePhoneRequest request) {
+    if (request.getPhoneOne()== request.getPhoneTwo()){
+        throw new RuntimeException("iki alan için aynı numara kullanılamaz.");
+    }
         OfficePhone officePhone = new OfficePhone();
         officePhone.setPhoneOne(request.getPhoneOne());
         officePhone.setPhoneTwo(request.getPhoneTwo());

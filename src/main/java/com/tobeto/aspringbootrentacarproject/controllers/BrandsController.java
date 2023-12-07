@@ -9,19 +9,17 @@ import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.AddBra
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.aspringbootrentacarproject.services.dtos.brand.responses.GetListBrandResponse;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/brands")
+@AllArgsConstructor
 public class BrandsController {
    private BrandService brandServices;
-
-   public BrandsController(BrandService brandService){
-      this.brandServices=brandService;
-   }
-
 
 
    @GetMapping("getAll")
@@ -33,8 +31,8 @@ public class BrandsController {
    public Brand getById(@PathVariable int id) {
       return brandServices.getById(id);
    }
-   @PostMapping("/add/")
-   public void add(@RequestBody AddBrandRequest request){
+   @PostMapping("/add/valid")
+   public void add(@RequestBody @Valid AddBrandRequest request){
       brandServices.add(request);
 
    }

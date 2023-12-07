@@ -25,6 +25,13 @@ public class CarMenager implements CarService {
         {
             throw new RuntimeException("The model year name cannot be less than 4 characters.");
         }
+        if (carRepository.existsCarByFuelType(request.getFuelType())){
+
+            throw new RuntimeException("minimum 3 karakterdern oluşmalıdır");
+        }
+
+
+
         Car car = new Car();
         car.setModelYear(request.getModelYear());
         car.setModelName(request.getModelName());
@@ -37,6 +44,7 @@ public class CarMenager implements CarService {
 
     @Override
     public void update(UpdateCarRequest request) {
+
         Car carToUpdate=carRepository.findById(request.getId()).orElseThrow();
         carToUpdate.setModelYear(request.getModelYear());
         carToUpdate.setModelName(request.getModelName());
